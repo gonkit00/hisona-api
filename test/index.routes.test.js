@@ -11,12 +11,14 @@ afterEach(() => {
 });
 
 describe('routes: index', () => {
+
   it('should respond as expected', async () => {
-    const response = await request(server).get('/');
+    const response = await request(server).get('/api/v1');
     expect(response.status).toEqual(200);
     expect(response.type).toEqual('application/json');
-    expect(response.body.data).toEqual('Hisona online');
+    expect(response.body.message).toEqual('Hisona online');
   });
+
 });
 
 

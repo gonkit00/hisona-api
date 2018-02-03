@@ -2,7 +2,7 @@
 
 const Koa = require('koa');
 const Router = require('koa-router');
-const router = new Router();
+const router = new Router({prefix: '/api/v1'});
 
 const logger = require('koa-logger');
 const serve = require('koa-static');
@@ -16,11 +16,7 @@ app.use(logger());
 app.use(koaBody());
 app.use(respond());
 
-router.get('/', async ctx => {
-  ctx.body = {
-    data: "Hisona online"
-  };
-});
+router.get('/', async ctx => ctx.ok('Hisona online'));
 
 app.use(router.routes());
 
