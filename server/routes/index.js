@@ -16,8 +16,8 @@ router.post('/conversation/incoming', conversationController.replyWithMessage)
 /**
  * Image Classification Routes
  */
-// router.post('/recognition/watson/classify')
-// router.get('/recognition/watson/classifiers')
+// router.post('/classify/watson/classify')
+router.get('/classify/watson/classifiers', classifyController.getClassifiers);
 
 
 module.exports = router;
