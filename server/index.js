@@ -1,8 +1,6 @@
 'use strict';
 
 const Koa = require('koa');
-const Router = require('koa-router');
-const router = new Router({prefix: '/api/v1'});
 
 const logger = require('koa-logger');
 const serve = require('koa-static');
@@ -11,6 +9,7 @@ const respond = require('koa-respond');
 
 const app = new Koa();
 const config = require('../config');
+const router = require('./routes');
 
 app.use(logger());
 app.use(koaBody());
