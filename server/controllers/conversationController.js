@@ -13,7 +13,7 @@ const getResponse = (intent) => {
   } 
 
   if (intent === 'about me') {
-    responses.push('I am the Hisona AI, able to direct you to Hisonified landmarks around the world.');
+    responses.push('I am the Hisona AI, able to direct you to Hisonified landmarks and artefacts around the world.');
   }
   
   if (context.defaultIntent) {
@@ -24,13 +24,13 @@ const getResponse = (intent) => {
 }
 
 async function replyWithMessage (ctx) {
-  
+
   try {
     const { body } = ctx.request;
     const intentData = await WitClient.message(body.msgStr);
 
     if (!intentData.entities.intent) {
-      throw new Error('No intents returned');
+      throw new Error(`No intents match "${body.msgStr}"`);
     }
 
     const intent = intentData.entities.intent[0].value;
@@ -45,6 +45,9 @@ async function replyWithMessage (ctx) {
 
   } catch (err) {
     console.log(err);
+    ctx.ok({
+      intent: 'default'
+    });
   }
 
 }
