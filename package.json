@@ -2,7 +2,7 @@
   "name": "hisona-api",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "index.js",
   "directories": {
     "test": "test"
   },
@@ -19,6 +19,7 @@
     "eslint": "^3.5.0",
     "eslint-plugin-json": "^1.2.0",
     "jest": "^22.1.4",
+    "nodemon": "^1.14.12",
     "supertest": "^3.0.0"
   },
   "dependencies": {

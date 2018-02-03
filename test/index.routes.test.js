@@ -15,7 +15,7 @@ describe('routes: index', () => {
     const response = await request(server).get('/');
     expect(response.status).toEqual(200);
     expect(response.type).toEqual('application/json');
-    expect(response.body.data).toEqual('JSON response');
+    expect(response.body.data).toEqual('Hisona online');
   });
 });
 
