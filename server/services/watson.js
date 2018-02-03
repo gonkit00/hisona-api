@@ -9,18 +9,19 @@ const visual_recognition = watson.visual_recognition({
   version_date: '2016-05-20'
 });
 
-// TODO: Refactor with async/await
+const classifierID = "es_public_358205314";
 
 const WatsonClient = {
 
   async classify () {
+    
     let parameters = {
-      classifier_ids: ["fruits_1462128776", "SatelliteModel_6242312846"],
-      threshold: 0.6
+      classifier_ids: [classifierID],
+      threshold: 0.2
     };
     
     const params = {
-      images_file: fs.createReadStream('./images/'),
+      images_file: fs.createReadStream('./test-images/columbus.jpg'),
       parameters: parameters
     };
 

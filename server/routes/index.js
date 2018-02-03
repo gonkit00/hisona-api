@@ -16,7 +16,7 @@ router.post('/conversation/incoming', conversationController.replyWithMessage)
 /**
  * Image Classification Routes
  */
-// router.post('/classify/watson/classify')
+router.post('/classify/watson/classify', classifyController.classifyImage);
 router.get('/classify/watson/classifiers', classifyController.getClassifiers);
 
 
