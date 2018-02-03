@@ -9,9 +9,11 @@ const visual_recognition = watson.visual_recognition({
   version_date: '2016-05-20'
 });
 
+// TODO: Refactor with async/await
+
 const WatsonClient = {
 
-  classify () {
+  async classify () {
     let parameters = {
       classifier_ids: ["fruits_1462128776", "SatelliteModel_6242312846"],
       threshold: 0.6
@@ -21,25 +23,42 @@ const WatsonClient = {
       images_file: fs.createReadStream('./images/'),
       parameters: parameters
     };
-    
-    visual_recognition.classify(params, function(err, response) {
-      if (err)
-        console.log(err);
-      else
-        console.log(JSON.stringify(response, null, 2))
-    });
-  },
 
-  listClassifiers ()  {
-    visual_recognition.listClassifiers({
-      verbose: true
-    },
-      function(err, response) {
+    try {
+      const label = await visual_recognition.classify(params, function(err, response) {
         if (err)
           console.log(err);
         else
           console.log(JSON.stringify(response, null, 2))
-    });
+      });
+      
+      return label
+      
+    } catch (err) {
+      console.log(err);
+    }
+    
+  },
+
+  async listClassifiers ()  {
+    
+    try {
+      const classifiers = await visual_recognition.listClassifiers({
+        verbose: true
+      },
+        function(err, response) {
+          if (err)
+            console.log(err);
+          else
+            console.log(JSON.stringify(response, null, 2))
+      });
+  
+      return classifiers;
+  
+    } catch (err) {
+      console.log(err);
+    }
+ 
   }
 
 }
