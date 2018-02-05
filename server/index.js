@@ -18,6 +18,17 @@ app.use(respond());
 router.get('/', async ctx => ctx.ok('Hisona online'));
 
 app.use(router.routes());
+app.use(router.allowedMethods());
+
+/**
+ * 404
+ */
+app.use(async (ctx, next) => {
+  if (parseInt(ctx.status) === 404) {
+     ctx.status = 404;
+     ctx.json('404', { message: 'Sorry, this URL does not exist.' });
+  }
+});
 
 const server = app.listen(config.port).on('error', err => {
   console.error(err);
