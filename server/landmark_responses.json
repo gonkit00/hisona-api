@@ -1,0 +1,20 @@
+[{
+  "es_public": [{
+    "1_es_pub_ramonberengueriii": [{
+      "intent_string": [{
+        "response_type": "text",
+        "text_body": "this is the intent response"
+      }],
+      "another_intent_string": [{
+        "response_type": "text",
+        "text_body": "this is another intent response"
+      }]
+    }],
+    "2_es_public_christophercolubus": [{
+      "intent_string": [{
+        "response_type": "text",
+        "text_body": "this is the intent response"
+      }]
+    }]
+  }]
+}]
