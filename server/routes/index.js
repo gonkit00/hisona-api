@@ -5,19 +5,10 @@ const router = new Router({
   prefix: '/api/v1'
 });
 
-const conversationController = require('../controllers/conversationController');
-const classifyController = require('../controllers/classifyController');
+const conversation = require('../routes/conversation.routes');
+const classify= require('../routes/classify.routes');
 
-/**
- * Conversation Logic Routes
- */
-router.post('/conversation/incoming', conversationController.replyWithMessage)
-
-/**
- * Image Classification Routes
- */
-router.post('/classify/watson/classify', classifyController.classifyImage);
-router.get('/classify/watson/classifiers', classifyController.getClassifiers);
-
+router.use('/conversation', conversation.routes());  
+router.use('/classify', classify.routes()); 
 
 module.exports = router;
