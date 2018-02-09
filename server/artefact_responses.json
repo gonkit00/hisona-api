@@ -17,4 +17,13 @@
       }]
     }]
   }]
+},{
+  "natural_history_museum_private": [{
+    "1_natural_history_museum_private_trex": [{
+      "intent_string": [{
+        "response_type": "text",
+        "text_body": "this is the intent response"
+      }]
+    }]
+  }]
 }]
