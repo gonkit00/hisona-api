@@ -1,7 +1,10 @@
 'use strict';
 
+require('dotenv').config();
+
 const Koa = require('koa');
 
+const cors = require('koa-cors');
 const logger = require('koa-logger');
 const serve = require('koa-static');
 const koaBody = require('koa-body');
@@ -11,11 +14,24 @@ const app = new Koa();
 const config = require('../config');
 const router = require('./routes');
 
-app.use(logger());
-app.use(koaBody());
-app.use(respond());
-
-router.get('/', async ctx => ctx.ok('Hisona online'));
+app
+  .use(cors(config.corsOptions))
+  .use(async (ctx, next) => {
+    try {
+      await next();
+    } catch (e) {
+      console.error (e);
+      ctx.status = 500;
+      if (e.message) {
+        ctx.body = {
+          errors: [e.message]
+        };
+      }
+    }
+  })
+  .use(koaBody())
+  .use(logger())
+  .use(respond());
 
 app.use(router.routes());
 app.use(router.allowedMethods());
@@ -25,8 +41,7 @@ app.use(router.allowedMethods());
  */
 app.use(async (ctx, next) => {
   if (parseInt(ctx.status) === 404) {
-     ctx.status = 404;
-     ctx.json('404', { message: 'Sorry, this URL does not exist.' });
+     ctx.send(404, { message: 'Sorry, this URL does not exist.' });
   }
 });
 

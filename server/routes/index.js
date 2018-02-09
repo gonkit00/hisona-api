@@ -8,6 +8,8 @@ const router = new Router({
 const conversation = require('../routes/conversation.routes');
 const classify= require('../routes/classify.routes');
 
+router.get('/', async ctx => ctx.ok('Hisona API online'));
+
 router.use('/conversation', conversation.routes());  
 router.use('/classify', classify.routes()); 
 
