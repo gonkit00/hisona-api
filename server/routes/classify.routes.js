@@ -8,7 +8,7 @@ const classifyController = require('../controllers/classifyController');
 /**
  * Watson Classification Routes
  */
-router.post('/watson/classify', classifyController.classifyImage);
+router.post('/watson/image', classifyController.classifyImage);
 router.get('/watson/classifiers', classifyController.getClassifiers);
 
 module.exports = router;

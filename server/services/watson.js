@@ -31,15 +31,16 @@ const WatsonClient = {
     };
 
     try {
-      const label = await visual_recognition.classify(params, function(err, response) {
+
+      const classLabel = await visual_recognition.classify(params, function(err, response) {
         if (err)
           console.log(err);
         else
           console.log(JSON.stringify(response, null, 2))
-      });
-      
-      return label
-      
+      });    
+
+      return classLabel;  
+
     } catch (err) {
       console.log(err);
     }
@@ -52,15 +53,13 @@ const WatsonClient = {
   async listClassifiers ()  {
     
     try {
-      const classifiers = await visual_recognition.listClassifiers({
-        verbose: true
-      },
-        function(err, response) {
+      const classifiers = await visual_recognition
+        .listClassifiers({ verbose: true }, (err, response) => {
           if (err)
             console.log(err);
           else
             console.log(JSON.stringify(response, null, 2))
-      });
+        });
   
       return classifiers;
   
