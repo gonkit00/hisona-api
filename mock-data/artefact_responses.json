@@ -1,0 +1,49 @@
+[{
+  "collection_ref": "es_public",
+  "artefacts": [{
+    "artefact_id": "1_es_pub_ramonberengueriii",
+    "artefact_responses": [{
+      "intent": "about_bio",
+      "intent_responses": [{
+        "response_type": "text",
+        "text_body": "this is the reply for the about_bio intent - ramon berenguer iii"
+      }]
+    },{
+      "intent": "intent_two",
+      "intent_responses": [{
+        "response_type": "text",
+        "text_body": "second intent"
+      }]
+    }]
+  }, {
+    "artefact_id": "2_es_public_christophercolubus",
+    "artefact_responses": [{
+      "intent": "about_bio",
+      "intent_responses": [{
+        "response_type": "text",
+        "text_body": "this is the reply for the about_bio intent - christopher columbus"
+      }]
+    }]
+  }]
+},{
+  "collection_ref": "es_PRIVATE",
+  "artefacts": [{
+    "artefact_id": "xxx",
+    "artefact_responses": [{
+      "intent": "intent_two",
+      "intent_responses": [{
+        "response_type": "text",
+        "text_body": "second intent"
+      }]
+    }]
+  }, {
+    "artefact_id": "xxxy",
+    "artefact_responses": [{
+      "intent": "about_bio",
+      "intent_responses": [{
+        "response_type": "text",
+        "text_body": "this is the reply"
+      }]
+    }]
+  }]
+}]

@@ -3,7 +3,7 @@
 const Router = require('koa-router');
 const router = new Router();
 
-const conversationController = require('../controllers/conversationController');
+const conversationController = require('../controllers/conversation-controller');
 
 /**
  * Conversation Logic Routes

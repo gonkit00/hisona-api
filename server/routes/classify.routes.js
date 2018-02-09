@@ -3,7 +3,7 @@
 const Router = require('koa-router');
 const router = new Router();
 
-const classifyController = require('../controllers/classifyController');
+const classifyController = require('../controllers/classify-controller');
 
 /**
  * Watson Classification Routes
