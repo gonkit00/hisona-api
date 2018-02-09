@@ -4,15 +4,20 @@ const fs = require('fs');
 const watson = require('watson-developer-cloud');
 
 const visual_recognition = watson.visual_recognition({
-  api_key: '0cfbaac9e09dd231cbf637d2c54ca8a7804fb077',
+  api_key: process.env.WATSON_API_KEY,
   version: 'v3',
   version_date: '2016-05-20'
 });
 
-const classifierID = "es_public_358205314";
+// TODO: Read from classification DB when created
+// Reference from landmarkID collection property
+const classifierID = 'es_public_358205314';
 
 const WatsonClient = {
 
+  /**
+   * Function description
+   */
   async classify () {
     
     let parameters = {
