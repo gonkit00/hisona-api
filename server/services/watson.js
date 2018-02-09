@@ -16,7 +16,7 @@ const classifierID = 'es_public_358205314';
 const WatsonClient = {
 
   /**
-   * Function description
+   * Classify an image
    */
   async classify () {
     
@@ -46,6 +46,9 @@ const WatsonClient = {
     
   },
 
+  /**
+   * Get all classifiers
+  */
   async listClassifiers ()  {
     
     try {

@@ -1,23 +1,23 @@
 'use strict';
 
 const fs = require('fs');
-const {Wit, log} = require('node-wit');
+const { Wit, log } = require('node-wit');
 
 const WitClient = {
 
   /**
-   * Function description
+   * Returns the correct WIT app token for the artefact in context
    *
-   * @param {string} landmarkID The context object
+   * @param {string} artefact_id The ID of the artefact in context
    */
-  async createInstance (landmarkID) {
+  async createInstance (artefact_id) {
 
     let access_token;
 
     // read es_public.json and find key from classID then create instance with nlpservices token
-    if (landmarkID === '1_es_pub_ramonberengueriii') {
+    if (artefact_id === '1_es_pub_ramonberengueriii') {
       access_token = process.env.RAMON_TOKEN;
-    } else if (landmarkID === '2_es_pub_christophercolubus') {
+    } else if (artefact_id === '2_es_pub_christophercolubus') {
       access_token = process.env.COLUMBUS_TOKEN;
     } else {
       // default fallback, todo
