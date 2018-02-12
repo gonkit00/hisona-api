@@ -4,9 +4,9 @@ const fs = require('fs');
 const watson = require('watson-developer-cloud');
 
 const visual_recognition = watson.visual_recognition({
-  api_key: process.env.WATSON_API_KEY,
-  version: 'v3',
-  version_date: '2016-05-20'
+	api_key: process.env.WATSON_API_KEY,
+	version: 'v3',
+	version_date: '2016-05-20'
 });
 
 // TODO: Read from classification DB when created
@@ -14,62 +14,53 @@ const visual_recognition = watson.visual_recognition({
 const classifierID = 'es_public_358205314';
 
 const WatsonClient = {
+	/**
+	 * Classify an image
+	 */
+	async classify() {
+		let parameters = {
+			classifier_ids: [classifierID],
+			threshold: 0.2
+		};
 
-  /**
-   * Classify an image
-   */
-  async classify () {
-    
-    let parameters = {
-      classifier_ids: [classifierID],
-      threshold: 0.2
-    };
-    
-    const params = {
-      images_file: fs.createReadStream('./test-images/columbus.jpg'),
-      parameters: parameters
-    };
+		const params = {
+			images_file: fs.createReadStream('./test-images/columbus.jpg'),
+			parameters: parameters
+		};
 
-    try {
+		try {
+			const classLabel = await visual_recognition.classify(params, function(
+				err,
+				response
+			) {
+				if (err) console.log(err);
+				else console.log(JSON.stringify(response, null, 2));
+			});
 
-      const classLabel = await visual_recognition.classify(params, function(err, response) {
-        if (err)
-          console.log(err);
-        else
-          console.log(JSON.stringify(response, null, 2))
-      });    
+			return classLabel;
+		} catch (err) {
+			console.log(err);
+		}
+	},
 
-      return classLabel;  
+	/**
+	 * Get all classifiers
+	 */
+	async listClassifiers() {
+		try {
+			const classifiers = await visual_recognition.listClassifiers(
+				{ verbose: true },
+				(err, response) => {
+					if (err) console.log(err);
+					else console.log(JSON.stringify(response, null, 2));
+				}
+			);
 
-    } catch (err) {
-      console.log(err);
-    }
-    
-  },
-
-  /**
-   * Get all classifiers
-  */
-  async listClassifiers ()  {
-    
-    try {
-      const classifiers = await visual_recognition
-        .listClassifiers({ verbose: true }, (err, response) => {
-          if (err)
-            console.log(err);
-          else
-            console.log(JSON.stringify(response, null, 2))
-        });
-  
-      return classifiers;
-  
-    } catch (err) {
-      console.log(err);
-    }
- 
-  }
-
-}
+			return classifiers;
+		} catch (err) {
+			console.log(err);
+		}
+	}
+};
 
 module.exports = WatsonClient;
-
