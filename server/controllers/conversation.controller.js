@@ -18,15 +18,13 @@ async function onIncomingMessage(ctx) {
 	};
 
 	try {
-    
 		const replyData = await ConversationLogic.respondToMessage(messageData);
 
-		if (!replyData.replyMsg) {
+		if (!replyData) {
 			throw new Error(`No intent match returning default`);
 		}
 
-    ctx.ok(replyData);
-    
+		ctx.ok(replyData);
 	} catch (err) {
 		console.log(err);
 		ctx.ok({
