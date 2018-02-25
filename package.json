@@ -31,6 +31,8 @@
     "koa-respond": "^1.0.1",
     "koa-router": "^7.4.0",
     "koa-static": "^4.0.2",
+    "mongodb": "^3.0.2",
+    "monk": "^6.0.5",
     "node-wit": "^4.3.0",
     "watson-developer-cloud": "^3.0.5"
   }

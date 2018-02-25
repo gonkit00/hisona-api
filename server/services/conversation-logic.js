@@ -6,13 +6,11 @@ const WitClient = require('../services/wit');
 const IntentDispatcher = require('../services/intent-dispatcher');
 
 const ConversationLogic = {
-  
 	async respondToMessage(messageData) {
+		// get the intent from the message
+		const intent = await ConversationLogic.getIntent(messageData);
 
-    // get the intent from the message 
-    const intent = await ConversationLogic.getIntent(messageData);
-
-    // map the intent to a reply
+		// map the intent to the reply
 		const replyFromIntent = await ConversationLogic.getReply(
 			messageData,
 			intent
@@ -22,7 +20,7 @@ const ConversationLogic = {
 			collection_ref: messageData.collectionRef,
 			artefact_id: messageData.artefactId,
 			intent: intent,
-			replyMsg: replyFromIntent
+			reply: replyFromIntent
 		};
 
 		return replyData;
@@ -37,12 +35,17 @@ const ConversationLogic = {
 	 */
 	async getReply({ collectionRef, artefactId }, intent) {
 		try {
-			const reply = IntentDispatcher.mapIntentToReply(
+
+			const intentAction = {
 				collectionRef,
 				artefactId,
 				intent
-			);
-			return reply;
+			};
+      const reply = IntentDispatcher.mapIntentToReply(intentAction); 
+
+      // error handling for reply
+      return reply;
+      
 		} catch (e) {
 			console.log(e);
 			return [];
@@ -56,20 +59,21 @@ const ConversationLogic = {
 	 */
 	async getIntent({ artefactId, messageToUnderstand }) {
 		try {
-			const intentData = await WitClient.processMessage(artefactId, messageToUnderstand);
-    
+			const intentData = await WitClient.processMessage(
+				artefactId,
+				messageToUnderstand
+			);
+
 			if (!intentData) {
 				throw new Error(`No matching intent from the client`);
 			}
 
 			const intent = intentData.entities.intent[0].value;
-      return intent;
-      
+			return intent;
 		} catch (err) {
 			console.log(err);
 		}
-  }
-  
+	}
 };
 
 module.exports = ConversationLogic;

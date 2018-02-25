@@ -11,31 +11,31 @@ const visual_recognition = watson.visual_recognition({
 
 // TODO: Read from classification DB when created
 // Reference from landmarkID collection property
-const classifierID = 'es_public_358205314';
+const classifierID = process.env.HISONA_GLOBAL_CLASS_ID;
 
 const WatsonClient = {
 	/**
 	 * Classify an image
 	 */
 	async classify() {
-		let parameters = {
+		const parameters = {
 			classifier_ids: [classifierID],
 			threshold: 0.2
 		};
 
-		const params = {
+		const classifyParams = {
 			images_file: fs.createReadStream('./test-images/columbus.jpg'),
 			parameters: parameters
 		};
 
 		try {
-			const classLabel = await visual_recognition.classify(params, function(
-				err,
-				response
-			) {
-				if (err) console.log(err);
-				else console.log(JSON.stringify(response, null, 2));
-			});
+			const classLabel = await visual_recognition.classify(
+				classifyParams,
+				(err, response) => {
+					if (err) console.log(err);
+					else console.log(JSON.stringify(response, null, 2));
+				}
+			);
 
 			return classLabel;
 		} catch (err) {
