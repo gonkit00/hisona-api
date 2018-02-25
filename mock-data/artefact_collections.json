@@ -1,61 +1,58 @@
-[{
-  "id": 1,
-  "name": "Spain Public",
-  "description": "...",
-  "country": "Spain",
-  "location": "...",
-  "type": "public",
-  "collection_ref": "es_public",
-  "watson_classifier_id": "es_public_358205314",
-  "date_created": "...",
-  "artefacts": [{
-    "name": "Roman Berenguer III",
-    "id": "1",
-    "artefact_id": "1_es_public_ramonberengueriii",
-    "collection_name": "Spain Public",
-    "collection_ref": "es_public",
-    "short_description": ".....",
-    "date_created":"....",
-    "last_updated":"....",
-    "hidden": false,
-    "country": "Spain",
-    "type":"statue",
-    "location":"TODO / lat / lon",
-    "nlp_services": [{
-      "WIT": "NJ2PFIIM2TH5AYASS6WAJLATLKLLA57X"
-    }]
-  },
-  {
-    "name": "Christopher Columbus",
-    "id": "2",
-    "artefact_id": "2_es_public_christophercolubus",
-    "collection_name": "Spain Public",
-    "collection_ref": "es_public",
-    "country": "Spain",
-    "nlp_services": [{
-      "WIT": "AKXKGA3MTJPLXR45IXBC4B5IFTF4AYM2"
-    }]
-  }
+[
+	{
+		"id": 1,
+		"name": "Spain Public",
+		"country": "Spain",
+		"type": "public",
+		"collection_ref": "es_public",
+		"watson_classifier_id": "es_public_358205314",
+		"date_created": "...",
+		"artefacts": [
+			{
+				"name": "Roman Berenguer III",
+				"id": "1",
+				"artefact_id": "1_es_public_ramonberengueriii",
+				"collection_name": "Spain Public",
+				"collection_ref": "es_public",
+				"short_description": ".....",
+				"avatar_url": "...",
+				"date_created": "....",
+				"offline": false,
+				"country": "Spain",
+				"type": ["landmark", "statue"],
+        "address": "....",
+        "coordinates": [
+
+        ],
+				"nlp_services": [
+					{
+						"WIT": "HSGVRQC5CQUID34TXFUDMGNWZ2PNWJUC"
+					}
+				]
+			},
+			{
+        "name": "Christopher Columbus",
+        
+				"id": "2",
+				"artefact_id": "2_es_public_christophercolubus",
+				"collection_name": "Spain Public",
+				"collection_ref": "es_public",
+				"short_description": ".....",
+				"avatar_url": "...",
+				"date_created": "....",
+				"offline": false,
+				"country": "Spain",
+				"type": ["landmark", "statue"],
+        "address": "....",
+        "coordinates": [
+
+        ],
+				"nlp_services": [
+					{
+						"WIT": "AKXKGA3MTJPLXR45IXBC4B5IFTF4AYM2"
+					}
+				]
+			}
+		]
+	}
 ]
-}, {
-  "id": 2,
-  "name": "Natural History Museum",
-  "description": "...",
-  "country": "United Kingdom",
-  "location": "...",
-  "type": "private",
-  "collection_ref": "natural_history_museum_private",
-  "watson_classifier_id": "....",
-  "date_created": "....",
-  "artefacts": [{
-    "name": "T-Rex",
-    "id": "3",
-    "artefact_id": "1_natural_history_museum_private_trex",
-    "collection_name": "Natural History Museum",
-    "collection_ref": "natural_history_museum_private",
-    "country": "UK",
-    "nlp_services": [{
-      "WIT": "NJ2PFIIM2TH5AYASS6WAJLATLKLLA57X"
-    }]
-  }]
-}]
