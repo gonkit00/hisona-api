@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 
-const WitClient = require('../services/wit');
+const Construe = require('../services/construe/bayesian');
 const IntentDispatcher = require('../services/intent-dispatcher');
 
 const ConversationLogic = {
@@ -27,6 +27,33 @@ const ConversationLogic = {
 	},
 
 	/**
+	 * Returns a list of intents based on the message received
+	 *
+	 * @param {object} data The message recieved from the client
+	 */
+	async getIntent({ artefactId, messageToUnderstand }) {
+		try {
+
+			const construe = new Construe.Bayesian();
+
+      // load intent model data based on artefact ID
+			const data = fs.readFileSync(`./mock-data/intents/${artefactId}.json`);
+
+			construe.trainAll(JSON.parse(data));
+
+			const intent = construe.classify(messageToUnderstand);
+
+			if (!intent) {
+				throw new Error(`No matching intent from the client`);
+			}
+
+			return intent;
+		} catch (err) {
+			console.log(err);
+		}
+	},
+
+	/**
 	 * Retrieve the associated reply from the intent
 	 *
 	 * @param {string} collectionRef The collection ID reference
@@ -35,43 +62,18 @@ const ConversationLogic = {
 	 */
 	async getReply({ collectionRef, artefactId }, intent) {
 		try {
-
 			const intentAction = {
 				collectionRef,
 				artefactId,
 				intent
 			};
-      const reply = IntentDispatcher.mapIntentToReply(intentAction); 
 
-      // error handling for reply
-      return reply;
-      
+			const reply = await IntentDispatcher.mapIntentToReply(intentAction);
+			// error handling for reply
+			return reply;
 		} catch (e) {
 			console.log(e);
 			return [];
-		}
-	},
-
-	/**
-	 * Returns a list of intents based on the message received
-	 *
-	 * @param {object} data The message recieved from the client
-	 */
-	async getIntent({ artefactId, messageToUnderstand }) {
-		try {
-			const intentData = await WitClient.processMessage(
-				artefactId,
-				messageToUnderstand
-			);
-
-			if (!intentData) {
-				throw new Error(`No matching intent from the client`);
-			}
-
-			const intent = intentData.entities.intent[0].value;
-			return intent;
-		} catch (err) {
-			console.log(err);
 		}
 	}
 };
