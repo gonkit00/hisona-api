@@ -1,69 +1,33 @@
 'use strict';
 
+const fs = require('fs');
+
 const IntentDispatcher = {
 
 	async mapIntentToReply(intentAction) {
-
 		try {
-      const reply = await mapResponse(intentAction);
-      return reply;
+			console.log(intentAction);
+
+			const data = fs.readFileSync(
+				`./mock-data/responses/${intentAction.artefactId}.json`
+			);
+
+			const responses = JSON.parse(data);
+
+			const reply = responses.filter(response => {
+				return response.intent === intentAction.intent;
+      });
+
+      if (!reply.length) {
+        return { default: 'default reply' }
+      }
+
+      return reply[0].reply;
 		} catch (err) {
-			console.error(err);
-    }
+			console.log(err);
+		}
+  }
 
-	}
-};
-
-const mapResponse = intentAction => {
-	switch (intentAction.intent) {
-		case 'hisona':
-			return [
-				{
-					type: 'typing_indicator',
-					duration: 2
-				},
-				{
-					type: 'text',
-					body: 'hisona intent reply body message'
-				}
-			];
-			break;
-		case 'about_bio':
-			return [
-				{
-					type: 'typing_indicator',
-					duration: 2
-				},
-				{
-					type: 'text',
-					body: 'about_bio intent reply body message'
-				}
-			];
-			break;
-		case 'education':
-			return [
-				{
-					type: 'typing_indicator',
-					duration: 2
-				},
-				{
-					type: 'text',
-					body: 'education intent reply body message'
-				}
-			];
-			break;
-		default:
-			return [
-				{
-					type: 'typing_indicator',
-					duration: 2
-				},
-				{
-					type: 'text',
-					body: 'default no intent match reply'
-				}
-			];
-	}
 };
 
 module.exports = IntentDispatcher;
