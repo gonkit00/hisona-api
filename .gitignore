@@ -1,6 +1,8 @@
 .DS_Store
 .env
-/mock-data
+mock-data
+data.json
+test-images
 
 # Logs
 logs

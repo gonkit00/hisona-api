@@ -34,6 +34,7 @@
     "mongodb": "^3.0.2",
     "monk": "^6.0.5",
     "node-wit": "^4.3.0",
+    "underscore": "^1.8.3",
     "watson-developer-cloud": "^3.0.5"
   }
 }
