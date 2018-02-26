@@ -3,7 +3,6 @@
 const fs = require('fs');
 
 const Construe = require('../services/construe/bayesian');
-const IntentDispatcher = require('../services/intent-dispatcher');
 
 const ConversationLogic = {
 	async respondToMessage(messageData) {
@@ -11,7 +10,7 @@ const ConversationLogic = {
 		const intent = await ConversationLogic.getIntent(messageData);
 
 		// map the intent to the reply
-		const replyFromIntent = await ConversationLogic.getReply(
+		const replyFromIntent = await ConversationLogic.mapIntentToReply(
 			messageData,
 			intent
 		);
@@ -33,10 +32,9 @@ const ConversationLogic = {
 	 */
 	async getIntent({ artefactId, messageToUnderstand }) {
 		try {
-
 			const construe = new Construe.Bayesian();
 
-      // load intent model data based on artefact ID
+			// load intent model data based on artefact ID
 			const data = fs.readFileSync(`./mock-data/intents/${artefactId}.json`);
 
 			construe.trainAll(JSON.parse(data));
@@ -54,13 +52,13 @@ const ConversationLogic = {
 	},
 
 	/**
-	 * Retrieve the associated reply from the intent
+	 * Maps the decoded intent to a reply response object
 	 *
 	 * @param {string} collectionRef The collection ID reference
 	 * @param {string} artefactId The artefact ID
 	 * @param {string} intent The intent used to match a reply
 	 */
-	async getReply({ collectionRef, artefactId }, intent) {
+	async mapIntentToReply({ collectionRef, artefactId }, intent) {
 		try {
 			const intentAction = {
 				collectionRef,
@@ -68,12 +66,22 @@ const ConversationLogic = {
 				intent
 			};
 
-			const reply = await IntentDispatcher.mapIntentToReply(intentAction);
-			// error handling for reply
-			return reply;
+			const data = fs.readFileSync(
+				`./mock-data/responses/${intentAction.artefactId}.json`
+			);
+
+			const responses = JSON.parse(data);
+
+			const reply = responses.filter(r => r.intent === intentAction.intent);
+
+			if (!reply.length) {
+				throw new Error('No response match the given intent, the default message has been sent.')
+			}
+
+			return reply[0].reply;
 		} catch (e) {
 			console.log(e);
-			return [];
+			return [{ default: 'default reply' }];
 		}
 	}
 };

@@ -11,10 +11,12 @@ const ConversationLogic = require('../services/conversation-logic');
 async function onIncomingMessage(ctx) {
 	const { body } = ctx.request;
 
+  const data = JSON.parse(body);
+
 	const messageData = {
-		messageToUnderstand: body.msgStr,
-		artefactId: body.artefact_id,
-		collectionRef: body.collection_ref
+		messageToUnderstand: data.msgStr,
+		artefactId: data.artefact_id,
+		collectionRef: data.collection_ref || ''
 	};
 
 	try {
