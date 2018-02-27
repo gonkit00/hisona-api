@@ -1,6 +1,7 @@
 'use strict';
 
 const limdu = require('limdu');
+const fs = require('fs');
 
 // First, define our base classifier type (a multi-label classifier based on winnow):
 const TextClassifier = limdu.classifiers.multilabel.BinaryRelevance.bind(0, {
@@ -16,35 +17,43 @@ const WordExtractor = function(input, features) {
 
 // Initialize a classifier with the base classifier type and the feature extractor:
 const intentClassifier = new limdu.classifiers.EnhancedClassifier({
-      classifierType: TextClassifier,
-      normalizer: limdu.features.LowerCaseNormalizer,
-      featureExtractor: WordExtractor
+	classifierType: TextClassifier,
+	normalizer: limdu.features.LowerCaseNormalizer,
+	featureExtractor: WordExtractor
 });
 
 const LimduClassifier = {
-  async loadModel() {
+	async loadModel(artefactId) {
 
-  }
-}
+		const modelData = fs.readFileSync(
+			`./mock-data/intent-models/${artefactId}.json`
+		);
 
-function loadModel(model) {
+		// Load the model based on the artefact_id, train then classify
+		await intentClassifier.trainBatch(JSON.parse(modelData));
+	},
 
-	  // Load the model based on the artefact_id, train then classify
-    intentClassifier.trainBatch(model);
-}
+	async classifyQuery({ artefactId, messageToUnderstand }) {
 
-function classifyQuery(query) {
+		await this.loadModel(artefactId);
 
+		const intent = await intentClassifier.classify(messageToUnderstand);
 
-}
+		return intent;
+	}
+};
 
-const modelOne = loadModel([{ input: "what school did you go to", output: 'education_one' }])
+module.exports = LimduClassifier;
 
-console.log(intentClassifier.classify('what school did you go to'));
+// const modelOne = loadModel([
+// 	{ input: 'what school did you go to', output: 'education_one' }
+// ]);
+// console.log(intentClassifier.classify('what school did you go to'));
 
-const modelTwo = loadModel([{ input: "what school did you go to", output: 'education_two' }])
-
-console.log(intentClassifier.classify('what school did you go to'));
+// const modelTwo = loadModel([
+// 	{ input: 'what school did you go to', output: 'education_two' }
+// ]);
+// console.log(intentClassifier.classify('what school did you go to'));
 
 // intentClassifier.trainBatch([
 // 	{ input: "Help i'm lost", output: 'need_directions' },
@@ -115,4 +124,3 @@ console.log(intentClassifier.classify('what school did you go to'));
 // 	{ input: 'I need help', output: 'greetings' },
 // 	{ input: 'Hello', output: 'greetings' }
 // ]);
-

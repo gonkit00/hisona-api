@@ -11,13 +11,11 @@ const ConversationLogic = require('../services/conversation-logic');
 async function onIncomingMessage(ctx) {
 	const { body } = ctx.request;
 
-  const data = JSON.parse(body);
-
-  console.log(data);
+	const data = JSON.parse(body);
 
 	const messageData = {
-		messageToUnderstand: data.msgStr,
-		artefactId: data.artefact_id,
+		messageToUnderstand: data.msgStr || '',
+		artefactId: data.artefact_id || '',
 		collectionRef: data.collection_ref || ''
 	};
 
@@ -26,7 +24,7 @@ async function onIncomingMessage(ctx) {
 
 		if (!replyData) {
 			throw new Error(`No intent match returning default`);
-		}
+    }
 
 		ctx.ok(replyData);
 	} catch (err) {

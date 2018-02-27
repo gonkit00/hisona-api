@@ -3,6 +3,7 @@
 const fs = require('fs');
 
 const Construe = require('../services/construe/bayesian');
+const LimduClassifier = require('../services/limdu-classifier');
 
 const ConversationLogic = {
 	async respondToMessage(messageData) {
@@ -32,20 +33,16 @@ const ConversationLogic = {
 	 */
 	async getIntent({ artefactId, messageToUnderstand }) {
 		try {
-			const construe = new Construe.Bayesian();
-
-			// load intent model data based on artefact ID
-			const data = fs.readFileSync(`./mock-data/intents/${artefactId}.json`);
-
-			construe.trainAll(JSON.parse(data));
-
-			const intent = construe.classify(messageToUnderstand);
+			const intent = await LimduClassifier.classifyQuery({
+				artefactId,
+				messageToUnderstand
+			});
 
 			if (!intent) {
 				throw new Error(`No matching intent from the client`);
 			}
 
-			return intent;
+			return intent[0];
 		} catch (err) {
 			console.log(err);
 		}
@@ -75,7 +72,9 @@ const ConversationLogic = {
 			const reply = responses.filter(r => r.intent === intentAction.intent);
 
 			if (!reply.length) {
-				throw new Error('No response match the given intent, the default message has been sent.')
+				throw new Error(
+					'No response match the given intent, the default message has been sent.'
+				);
 			}
 
 			return reply[0].reply;

@@ -13,8 +13,8 @@ router.post('/watson/classify', classifyController.classifyImage);
 router.get('/watson/classifiers', classifyController.getClassifiers);
 
 /**
- * Construe Classification Routes
+ * Intent Classification Routes
  */
-router.post('/construe/incoming', conversationController.onIncomingMessage);
+router.post('/intent/classify', conversationController.onIncomingMessage);
 
 module.exports = router;
