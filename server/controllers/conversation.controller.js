@@ -13,6 +13,8 @@ async function onIncomingMessage(ctx) {
 
   const data = JSON.parse(body);
 
+  console.log(data);
+
 	const messageData = {
 		messageToUnderstand: data.msgStr,
 		artefactId: data.artefact_id,
