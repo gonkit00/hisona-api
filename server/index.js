@@ -15,23 +15,32 @@ const config = require('../config');
 const router = require('./routes');
 
 app
-  .use(cors(config.corsOptions))
-  .use(async (ctx, next) => {
-    try {
-      await next();
-    } catch (e) {
-      console.error (e);
-      ctx.status = 500;
-      if (e.message) {
-        ctx.body = {
-          errors: [e.message]
-        };
-      }
-    }
-  })
-  .use(koaBody())
-  .use(logger())
-  .use(respond());
+	.use(cors(config.corsOptions))
+	.use(async (ctx, next) => {
+		try {
+			await next();
+		} catch (e) {
+			console.error(e);
+			ctx.status = 500;
+			if (e.message) {
+				ctx.body = {
+					errors: [e.message]
+				};
+			}
+		}
+	})
+	.use(
+		koaBody({
+			formidable: {
+				uploadDir: './temp-images',
+				keepExtensions: true
+			},
+			multipart: true,
+			urlencoded: true
+		})
+	)
+	.use(logger())
+	.use(respond());
 
 app.use(router.routes());
 app.use(router.allowedMethods());
@@ -40,16 +49,15 @@ app.use(router.allowedMethods());
  * 404
  */
 app.use(async (ctx, next) => {
-  if (parseInt(ctx.status) === 404) {
-     ctx.send(404, { message: 'Sorry, this URL does not exist.' });
-  }
+	if (parseInt(ctx.status) === 404) {
+		ctx.send(404, { message: 'Sorry, this URL does not exist.' });
+	}
 });
 
 const server = app.listen(config.port).on('error', err => {
-  console.error(err);
+	console.error(err);
 });
 
-console.log(`Server now listening on: ${config.port}`)
+console.log(`Server now listening on: ${config.port}`);
 
 module.exports = server;
-

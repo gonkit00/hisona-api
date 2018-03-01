@@ -10,7 +10,7 @@ const userController = require('../controllers/user.controller');
  */
 
 // TODO: pass in artefact ID
+router.get('/artefacts', userController.getArtefacts);
 router.get('/conversations', userController.getConversations);
-router.get('/conversations/thread', userController.getConversationThread);
 
 module.exports = router;
