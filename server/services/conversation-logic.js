@@ -6,6 +6,12 @@ const Construe = require('../services/construe/bayesian');
 const LimduClassifier = require('../services/limdu-classifier');
 
 const ConversationLogic = {
+
+	/**
+	 * Creates the reply from the incoming message data
+	 *
+	 * @param {object} messageData The message sent from the client
+	 */
 	async respondToMessage(messageData) {
 		// get the intent from the message
 		const intent = await ConversationLogic.getIntent(messageData);
@@ -27,9 +33,9 @@ const ConversationLogic = {
 	},
 
 	/**
-	 * Returns a list of intents based on the message received
+	 * Returns a list of intents based on the message string
 	 *
-	 * @param {object} data The message recieved from the client
+	 * @param {object} data The message sent from the client
 	 */
 	async getIntent({ artefactId, messageToUnderstand }) {
 		try {
