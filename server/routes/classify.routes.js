@@ -7,10 +7,11 @@ const classifyController = require('../controllers/classify.controller');
 const conversationController = require('../controllers/conversation.controller');
 
 /**
- * Watson Classification Routes
+ * Image Classification Routes
  */
 router.post('/watson/classify', classifyController.classifyImage);
 router.get('/watson/classifiers', classifyController.getClassifiers);
+router.post('/image/map', classifyController.mapClassToArtefact);
 
 /**
  * Intent Classification Routes

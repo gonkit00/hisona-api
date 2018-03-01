@@ -1,5 +1,6 @@
 'use strict';
 
+const fs = require('fs');
 const WatsonClient = require('../services/watson');
 
 /**
@@ -8,13 +9,12 @@ const WatsonClient = require('../services/watson');
  * @param {object} ctx The context object
  */
 async function getClassifiers(ctx) {
-  try {
-    const classifiers = await WatsonClient.listClassifiers();
-    ctx.ok(classifiers);
-
-  } catch (err) {
-    console.log(err);
-  }
+	try {
+		const classifiers = await WatsonClient.listClassifiers();
+		ctx.ok(classifiers);
+	} catch (err) {
+		console.log(err);
+	}
 }
 
 /**
@@ -23,28 +23,60 @@ async function getClassifiers(ctx) {
  * @param {object} ctx The context object
  */
 async function classifyImage(ctx) {
-  try {
-    const data = await WatsonClient.classify();
-    // if threshold is below 2 then throw back unreliable match response
+	try {
+		const imagePath = ctx.request.body.files.photo.path;
 
-    // TODO: Manage endpoints for no class returned, prompts user to search or show related
-    // if (!data.images[0].classifiers[0].classes) {
-    //   throw new Error('No class returned');
-    // }
+		const data = await WatsonClient.classify('./test-images/roman.jpg');
 
-    ctx.ok(data);
+		if (!data) {
+			throw new Error('The artefact could not be recognised from the image');
+		}
 
-    // const filterByThreshold = (label) => label.score > 0.2;
-    // const landmarkID = data.images[0].classifiers[0].classes.filter(filterByThreshold)[0].class
-    // TODO: Pass landmarkID to match with NLP service
+		// now look up the artefact and welcome message to send to the client
+		ctx.ok(data);
+	} catch (err) {
+		console.log(err);
+		ctx.send(404, { error: err.message });
+	}
+}
+/**
+ * Maps the class label from the image to the artefact
+ *
+ * @param {object} ctx The context object
+ */
+async function mapClassToArtefact(ctx) {
+	try {
+    const { body } = ctx.request;
 
-  } catch (err) {
-    console.log(err);
-    ctx.send({ 'error': 'No class returned' });
-  }
+    const data = JSON.parse(body);
+
+		const classLabel = data.images[0].classifiers[0].classes[0].class;
+
+		const artefactCollection = await fs.readFileSync(
+			`./mock-data/artefact_collection.json`
+		);
+
+		const artefacts = JSON.parse(artefactCollection);
+
+		const artefactFromClassLabel = artefacts.filter(a => {
+			return a.artefact_id === classLabel;
+		});
+
+		if (!artefactFromClassLabel.length) {
+			throw new Error('There is no artefact that matches the class label.');
+		}
+
+		console.log('Artefact found: ', artefactFromClassLabel);
+
+		ctx.ok(artefactFromClassLabel);
+	} catch (err) {
+		console.log(err);
+		ctx.send(404, { error: err.message });
+	}
 }
 
 module.exports = {
-  getClassifiers,
-  classifyImage
+	getClassifiers,
+	classifyImage,
+	mapClassToArtefact
 };

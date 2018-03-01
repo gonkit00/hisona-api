@@ -17,14 +17,14 @@ const WatsonClient = {
 	/**
 	 * Classify an image
 	 */
-	async classify() {
+	async classify(imagePath) {
 		const parameters = {
 			classifier_ids: [classifierID],
-			threshold: 0.2
+			threshold: 0.25
 		};
 
 		const classifyParams = {
-			images_file: fs.createReadStream('./test-images/columbus.jpg'),
+			images_file: fs.createReadStream(imagePath),
 			parameters: parameters
 		};
 
@@ -35,9 +35,9 @@ const WatsonClient = {
 					if (err) console.log(err);
 					else console.log(JSON.stringify(response, null, 2));
 				}
-			);
+      )
 
-			return classLabel;
+      return classLabel
 		} catch (err) {
 			console.log(err);
 		}
