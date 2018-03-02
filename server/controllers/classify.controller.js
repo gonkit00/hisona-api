@@ -3,6 +3,7 @@
 const fs = require('fs');
 const WatsonClient = require('../services/watson');
 const db = require('../db');
+const utils = require('../utils');
 
 /**
  * List all classifications created
@@ -19,7 +20,7 @@ async function getClassifiers(ctx) {
 }
 
 /**
- * Classify an image through a collection classifier e.g es_public
+ * Classifies an image through the collection classifier e.g hisona_global
  *
  * @param {object} ctx The context object
  */
@@ -41,8 +42,9 @@ async function classifyImage(ctx) {
 		ctx.send(404, { error: err.message });
 	}
 }
+
 /**
- * Maps the class label from the image to the artefact
+ * Maps the returned class label from the image to the artefact
  *
  * @param {object} ctx The context object
  */
@@ -50,7 +52,7 @@ async function mapClassToArtefact(ctx) {
 	try {
 		const { body } = ctx.request;
 
-		const data = cleanBody(body);
+		const data = utils.cleanBody(body);
 
 		if (!data.images[0].classifiers.length) {
 			throw new Error('The artefact could not be recognised from the image');
@@ -72,23 +74,15 @@ async function mapClassToArtefact(ctx) {
 			throw new Error('There is no artefact that matches the class label');
 		}
 
-		console.log('Artefact found: ', artefactFromClassLabel);
-
 		ctx.ok(artefactFromClassLabel);
 
-		// TODO
 		const status = await db.addArtefact(artefactFromClassLabel[0]);
-    console.log(status);
-
+		console.log(status);
 	} catch (err) {
 		console.log(err);
 		ctx.send(404, { error: err.message });
 	}
 }
-
-const cleanBody = body => {
-	return typeof body !== 'object' ? JSON.parse(body) : body;
-};
 
 module.exports = {
 	getClassifiers,

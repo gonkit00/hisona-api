@@ -8,8 +8,6 @@ const userController = require('../controllers/user.controller');
 /**
  * User Routes
  */
-
-// TODO: pass in artefact ID
 router.get('/artefacts', userController.getArtefacts);
 router.get('/conversations', userController.getConversations);
 

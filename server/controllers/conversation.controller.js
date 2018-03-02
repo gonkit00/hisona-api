@@ -2,18 +2,19 @@
 
 const fs = require('fs');
 const ConversationLogic = require('../services/conversation-logic');
+const utils = require('../utils');
 
 /**
- * Respond to the incoming message with a reply
+ * Replies to the incoming message
  *
  * @param {object} ctx The context object
  */
 async function onIncomingMessage(ctx) {
 	const { body } = ctx.request;
 
-  const data = cleanBody(body);
+	const data = utils.cleanBody(body);
 
-  console.log(data);
+	console.log(data);
 
 	const messageData = {
 		messageToUnderstand: data.text || '',
@@ -31,14 +32,8 @@ async function onIncomingMessage(ctx) {
 		ctx.ok(replyData);
 	} catch (err) {
 		console.log(err);
-		ctx.send(404, {
-			error: err.message
-		});
+		ctx.send(404, { err: err.message });
 	}
 }
-
-const cleanBody = body => {
-	return typeof body !== 'object' ? JSON.parse(body) : body;
-};
 
 module.exports = { onIncomingMessage };
