@@ -23,8 +23,12 @@ const ConversationLogic = {
 		const replyData = {
 			collection_ref: messageData.collectionRef,
 			artefact_id: messageData.artefactId,
-			intent: intent,
-			reply: replyFromIntent
+			intent: intent || 'default',
+			reply: replyFromIntent || [{
+				content_type: 'text',
+				direction: 'left',
+				text: 'Sorry I did not understand that.'
+			}]
 		};
 
 		return replyData;
@@ -55,9 +59,9 @@ const ConversationLogic = {
 	/**
 	 * Maps the decoded intent to a reply response object
 	 *
-	 * @param {string} collectionRef The collection ID reference
+	 * @param {string} collectionRef The collection ID
 	 * @param {string} artefactId The artefact ID
-	 * @param {string} intent The intent used to match a reply
+	 * @param {string} intent The intent used to map to a reply
 	 */
 	async mapIntentToReply({ collectionRef, artefactId }, intent) {
 		try {
@@ -84,11 +88,6 @@ const ConversationLogic = {
 			return replyData[0].reply;
 		} catch (e) {
 			console.log(e);
-			return {
-				content_type: 'text',
-				direction: 'left',
-				text: 'Sorry I did not understand that.'
-			};
 		}
 	}
 };
