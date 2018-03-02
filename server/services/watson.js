@@ -20,7 +20,7 @@ const WatsonClient = {
 	async classify(imagePath) {
 		const parameters = {
 			classifier_ids: [classifierID],
-			threshold: 0.25
+			threshold: 0.30
 		};
 
 		const classifyParams = {
