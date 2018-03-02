@@ -3,7 +3,7 @@
 Install dependencies
 
 ```
-yarn
+npm install
 ```
 
 Start the server using nodemon

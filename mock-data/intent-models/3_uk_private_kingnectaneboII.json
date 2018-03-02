@@ -1,0 +1,11 @@
+[
+	{ "input": "hello", "output": "greetings" },
+	{ "input": "hi", "output": "greetings" },
+	{ "input": "hey", "output": "greetings" },
+	{ "input": "how are you", "output": "greetings" },
+	{ "input": "who are you", "output": "about_bio" },
+	{ "input": "tell me more about you", "output": "about_bio" },
+	{ "input": "tell me about your education", "output": "education" },
+	{ "input": "what did school did you go to", "output": "education" },
+	{ "input": "I dont understand", "output": "default" }
+]

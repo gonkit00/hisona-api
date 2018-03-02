@@ -1,0 +1,42 @@
+[
+	{
+		"intent": "greetings",
+		"reply": [
+			{
+				"content_type": "text",
+				"direction": "left",
+				"text": "Hello there! What would you like to know?"
+			}
+		]
+	},
+	{
+		"intent": "about_bio",
+		"reply": [
+			{
+				"content_type": "typing_indicator",
+				"direction": "left",
+				"duration": 3000
+			},
+			{
+				"content_type": "text",
+				"direction": "left",
+				"text": "Ramon Berenguer III about bio reply body message"
+			}
+		]
+	},
+	{
+		"intent": "education",
+		"reply": [
+			{
+				"content_type": "typing_indicator",
+				"direction": "left",
+				"duration": 3000
+			},
+			{
+				"content_type": "text",
+				"direction": "left",
+				"text": "Ramon Berenguer III education intent reply body message"
+			}
+		]
+	}
+]
