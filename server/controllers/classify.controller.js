@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const WatsonClient = require('../services/watson');
+const db = require('../db');
 
 /**
  * List all classifications created
@@ -26,13 +27,14 @@ async function classifyImage(ctx) {
 	try {
 		const imagePath = ctx.request.body.files.photo.path;
 
-		const data = await WatsonClient.classify('./test-images/roman.jpg');
+		const data = await WatsonClient.classify(imagePath);
 
 		if (!data) {
-			throw new Error('The artefact could not be recognised from the image');
+			throw new Error(
+				'The classification request failed to recieve a response'
+			);
 		}
 
-		// now look up the artefact and welcome message to send to the client
 		ctx.ok(data);
 	} catch (err) {
 		console.log(err);
@@ -46,9 +48,13 @@ async function classifyImage(ctx) {
  */
 async function mapClassToArtefact(ctx) {
 	try {
-    const { body } = ctx.request;
+		const { body } = ctx.request;
 
-    const data = JSON.parse(body);
+		const data = cleanBody(body);
+
+		if (!data.images[0].classifiers.length) {
+			throw new Error('The artefact could not be recognised from the image');
+		}
 
 		const classLabel = data.images[0].classifiers[0].classes[0].class;
 
@@ -63,17 +69,26 @@ async function mapClassToArtefact(ctx) {
 		});
 
 		if (!artefactFromClassLabel.length) {
-			throw new Error('There is no artefact that matches the class label.');
+			throw new Error('There is no artefact that matches the class label');
 		}
 
 		console.log('Artefact found: ', artefactFromClassLabel);
 
 		ctx.ok(artefactFromClassLabel);
+
+		// TODO
+		const status = await db.addArtefact(artefactFromClassLabel[0]);
+    console.log(status);
+
 	} catch (err) {
 		console.log(err);
 		ctx.send(404, { error: err.message });
 	}
 }
+
+const cleanBody = body => {
+	return typeof body !== 'object' ? JSON.parse(body) : body;
+};
 
 module.exports = {
 	getClassifiers,

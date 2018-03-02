@@ -1,15 +1,16 @@
 'use strict';
 
 const fs = require('fs');
+const db = require('../db');
 
 /**
- * Get the conversation thread from the artefact ID
+ * Get the artefacts
  *
  * @param {object} ctx The context object
  */
 async function getArtefacts(ctx) {
 	try {
-		const artefacts = await fs.readFileSync(`./mock-data/user/artefacts.json`);
+		const artefacts = await db.getAllArtefacts();
 
 		if (!artefacts) {
 			throw new Error(`No artefacts recognised yet`);
@@ -28,15 +29,15 @@ async function getArtefacts(ctx) {
  */
 async function getConversations(ctx) {
 	try {
-		const conversationsData = await fs.readFileSync(
-			`./mock-data/user/conversations.json`
-		);
+		const conversations = await db.getAllConversations();
 
-		if (!conversationsData) {
+		if (!conversations) {
 			throw new Error(`No conversations started`);
 		}
 
-		ctx.ok(conversationsData);
+		const conversationsByOrder = conversations.reverse();
+
+		ctx.ok(conversationsByOrder);
 	} catch (err) {
 		ctx.send(404, { error: err.message });
 	}

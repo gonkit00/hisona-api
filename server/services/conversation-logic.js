@@ -2,11 +2,9 @@
 
 const fs = require('fs');
 
-const Construe = require('../services/construe/bayesian');
 const LimduClassifier = require('../services/limdu-classifier');
 
 const ConversationLogic = {
-
 	/**
 	 * Creates the reply from the incoming message data
 	 *
@@ -75,18 +73,22 @@ const ConversationLogic = {
 
 			const responses = JSON.parse(data);
 
-			const reply = responses.filter(r => r.intent === intentAction.intent);
+			const replyData = responses.filter(r => r.intent === intentAction.intent);
 
-			if (!reply.length) {
+			if (!replyData.length) {
 				throw new Error(
-					'No response match the given intent, the default message has been sent.'
+					'No response matched the given intent, the default message has been sent.'
 				);
 			}
 
-			return reply[0].reply;
+			return replyData[0].reply;
 		} catch (e) {
 			console.log(e);
-			return [{ default: 'default reply' }];
+			return {
+				content_type: 'text',
+				direction: 'left',
+				text: 'Sorry I did not understand that.'
+			};
 		}
 	}
 };
