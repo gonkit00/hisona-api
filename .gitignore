@@ -1,7 +1,6 @@
 .DS_Store
 .env
 mock-data
-data.json
 test-images
 temp-images
 

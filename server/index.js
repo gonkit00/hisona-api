@@ -15,7 +15,7 @@ const config = require('../config');
 const router = require('./routes');
 
 app
-	.use(cors(config.corsOptions))
+	.use(cors())
 	.use(async (ctx, next) => {
 		try {
 			await next();
