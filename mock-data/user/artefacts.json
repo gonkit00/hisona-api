@@ -1,1 +1,25 @@
-[{"_id":"1","artefact_id":"hisona_global","artefact_name":"Hisona","collection_name":"Hisona","collection_ref":"hisona_en","short_description":".....","avatar_path":"https://s3.eu-central-1.amazonaws.com/hisona/artefacts_avatars/hisona.png","date_created":"....","offline":false,"country":"","type":["statue"],"location":"Earth","coordinates":[],"default_onboarding_message":[{"type":"text","direction":"left","text":"Hello this is the Hisona welcome message"}]},{"_id":"4","artefact_id":"3_uk_private_kingnectaneboII","artefact_name":"King Nectanebo II","collection_name":"Bristish Museum","collection_ref":"uk_private","short_description":"Part of Egyptian collection at the British Museum, London.","avatar_path":"https://s3.eu-central-1.amazonaws.com/hisona/artefacts_avatars/nectanebo.png","date_created":"....","offline":false,"country":"London","type":["museum artefact"],"location":"Bristish Museum, London","coordinates":[],"default_onboarding_message":[{"type":"text","direction":"left","text":"Hello this is the King Nectanebo II welcome message"}],"onboarding_read":false}]
+[
+	{
+		"_id": "1",
+		"artefact_id": "hisona_global",
+		"artefact_name": "Hisona",
+		"collection_name": "Hisona",
+		"collection_ref": "hisona_en",
+		"short_description": ".....",
+		"avatar_path":
+			"https://s3.eu-central-1.amazonaws.com/hisona/artefacts_avatars/hisona.png",
+		"date_created": "....",
+		"offline": false,
+		"country": "",
+		"type": ["statue"],
+		"location": "Earth",
+		"coordinates": [],
+		"default_onboarding_message": [
+			{
+				"type": "text",
+				"direction": "left",
+				"text": "Hello this is the Hisona welcome message"
+			}
+		]
+	}
+]
