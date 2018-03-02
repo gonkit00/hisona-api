@@ -49,6 +49,7 @@ const addArtefact = artefact => {
 			artefact_id: artefact.artefact_id,
 			last_message_subtitle: artefact.default_onboarding_message[0].text,
 			last_message_date: '15:00',
+			read: false,
 			thread: [
 				{
 					content_type: 'text',
@@ -75,9 +76,9 @@ const doesExist = (entity, collection) => {
 };
 
 const getId = () => {
-  const conversations = fetchConversations();
-  const id = conversations.length + 1;
-  return id.toString();
+	const conversations = fetchConversations();
+	const id = conversations.length + 1;
+	return id.toString();
 };
 
 const addConversation = conversation => {
