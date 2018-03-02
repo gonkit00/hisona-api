@@ -1,0 +1,25 @@
+[
+	{
+		"_id": "1",
+		"artefact_id": "hisona_global",
+		"artefact_name": "Hisona",
+		"collection_name": "Hisona",
+		"collection_ref": "hisona_en",
+		"short_description": ".....",
+		"avatar_path":
+			"https://s3.eu-central-1.amazonaws.com/hisona/artefacts_avatars/hisona.png",
+		"date_created": "....",
+		"offline": false,
+		"country": "",
+		"type": ["statue"],
+		"location": "Earth",
+		"coordinates": [],
+		"default_onboarding_message": [
+			{
+				"type": "text",
+				"direction": "left",
+				"text": "Hello this is the Hisona welcome message"
+			}
+		]
+	}
+]

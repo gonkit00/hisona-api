@@ -1,8 +1,6 @@
 .DS_Store
 .env
-mock-data
 test-images
-temp-images
 
 # Logs
 logs
