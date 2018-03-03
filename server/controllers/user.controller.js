@@ -43,7 +43,24 @@ async function getConversations(ctx) {
 	}
 }
 
+/**
+ * Stores the users push notification token from Expo
+ *
+ * @param {object} ctx The context object
+ */
+async function savePushNotificationToken(ctx) {
+	try {
+		// ExponentPushToken[ieFwwFBuqM2g6SVI8xwj44]
+		console.log(ctx.request.body);
+		ctx.ok(ctx.request.body);
+	} catch (err) {
+		console.log(err);
+		ctx.send(404, { error: err.message });
+	}
+}
+
 module.exports = {
 	getArtefacts,
-	getConversations
+	getConversations,
+	savePushNotificationToken
 };

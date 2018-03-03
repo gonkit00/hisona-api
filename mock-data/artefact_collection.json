@@ -59,7 +59,7 @@
 		"offline": false,
 		"country": "Spain",
 		"type": ["statue"],
-		"location": "....",
+		"location": "Barcelona, Spain",
 		"coordinates": [],
 		"default_onboarding_message": [
 			{
@@ -76,7 +76,8 @@
 		"artefact_name": "King Nectanebo II",
 		"collection_name": "Bristish Museum",
 		"collection_ref": "uk_private",
-		"short_description": "Part of Egyptian collection at the British Museum, London.",
+		"short_description":
+			"Part of Egyptian collection at the British Museum, London.",
 		"avatar_path":
 			"https://s3.eu-central-1.amazonaws.com/hisona/artefacts_avatars/nectanebo.png",
 		"date_created": "....",

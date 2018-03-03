@@ -23,11 +23,6 @@
 		"intent": "education",
 		"reply": [
 			{
-				"content_type": "typing_indicator",
-				"direction": "left",
-				"duration": 3000
-			},
-			{
 				"content_type": "text",
 				"direction": "left",
 				"text": "Christopher Columbus education intent reply body message"

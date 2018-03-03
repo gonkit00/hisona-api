@@ -13,11 +13,6 @@
 		"intent": "about_bio",
 		"reply": [
 			{
-				"content_type": "typing_indicator",
-				"direction": "left",
-				"duration": 3000
-			},
-			{
 				"content_type": "text",
 				"direction": "left",
 				"text": "King Nectanebo about bio reply body message"
@@ -27,11 +22,6 @@
 	{
 		"intent": "education",
 		"reply": [
-			{
-				"content_type": "typing_indicator",
-				"direction": "left",
-				"duration": 3000
-			},
 			{
 				"content_type": "text",
 				"direction": "left",

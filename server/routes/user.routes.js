@@ -11,6 +11,7 @@ const utils = require('../utils');
  */
 router.get('/artefacts', userController.getArtefacts);
 router.get('/conversations', userController.getConversations);
+router.post('/push-token', userController.savePushNotificationToken);
 
 router.get('/reset', utils.resetToInit);
 

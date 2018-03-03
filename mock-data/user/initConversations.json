@@ -4,7 +4,7 @@
 		"artefact_id": "hisona_global",
 		"last_message_subtitle": "Hisona test welcome message",
 		"last_message_date": "14:00",
-		"unread": true,
+		"read": false,
 		"thread": [
 			{
 				"content_type": "text",
