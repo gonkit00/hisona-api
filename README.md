@@ -2,9 +2,9 @@
  <img width= "232px" src="https://github.com/cjjenkinson/hisona-app/blob/develop/assets/hisona_loading_logo.png?raw=trueg"></img>
 </div>
 
-Hisona is a cross paltform app that makes it possible for people to have a conversation with Historical artefacts including public landmarks, monuments and museum pieces.
+Hisona is a cross platform app that makes it possible for people to have a conversation with historical artefacts like public landmarks, monuments and pieces inside museums.
 
-Hisona is purpose is about making the history around us more accessible, engaging and a two-way educational experience by using AI to bring historical artefacts to 'life'.
+The purpose of Hisona is to make learning about history easier and more fun. By leveraging AI technolohies Hisona makes the history around us more accessible, engaging and a two-way conversational experience to bring historical artefacts to 'life'.
 
 ## Tech Stack
 
