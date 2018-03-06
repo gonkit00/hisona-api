@@ -16,6 +16,16 @@
 				"content_type": "text",
 				"direction": "left",
 				"text": "Hisona about bio reply body message"
+			},
+			{
+				"content_type": "text",
+				"direction": "left",
+				"text": "Hisona about bio reply body message two"
+			},
+			{
+				"content_type": "text",
+				"direction": "left",
+				"text": "Hisona about bio reply body message three"
 			}
 		]
 	},
