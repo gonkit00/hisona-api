@@ -7,5 +7,11 @@
 	{ "input": "tell me more about you", "output": "about_bio" },
 	{ "input": "tell me about your education", "output": "education" },
 	{ "input": "what did school did you go to", "output": "education" },
+	{ "input": "where were you born", "output": "born_location" },
+	{ "input": "where did you grow up", "output": "born_location" },
+	{ "input": "how many voyages did you have", "output": "voyages" },
+	{ "input": "what were you known for", "output": "voyages" },
+	{ "input": "what was your first voyage", "output": "first_voyage" },
+	{ "input": "where did you first sail to", "output": "first_voyage" },
 	{ "input": "I dont understand", "output": "default" }
 ]
