@@ -15,7 +15,8 @@
 			{
 				"content_type": "text",
 				"direction": "left",
-				"text": "Christopher Columbus about bio reply body message"
+				"text":
+					"Christopher Columbus (c. 1451 to May 20, 1506) was an Italian explorer and navigator. In 1492, he sailed across the Atlantic from Spain in the Santa Maria, with the Pinta and the Niña ships alongside, hoping to find a new route to India. Between 1492 and 1504, he made a total of four voyages to the Caribbean and South America and has been credited for opening up the Americas to European colonization."
 			}
 		]
 	},
@@ -25,7 +26,41 @@
 			{
 				"content_type": "text",
 				"direction": "left",
-				"text": "Christopher Columbus education intent reply body message"
+				"text":
+					"Columbus first went to sea as a teenager, participating in several trading voyages in the Mediterranean and Aegean seas. One such voyage, to the island of Khios, in modern day Greece, brought him the closest he would come to Asia."
+			}
+		]
+	},
+	{
+		"intent": "born_location",
+		"reply": [
+			{
+				"content_type": "text",
+				"direction": "left",
+				"text":
+					"Christopher Columbus was born in 1451 in the Republic of Genoa, or what is now Italy. In his 20s he moved to Lisbon, Portugal, and later resettled in Spain, which remained his home base for the duration of his life."
+			}
+		]
+	},
+	{
+		"intent": "voyages",
+		"reply": [
+			{
+				"content_type": "text",
+				"direction": "left",
+				"text":
+					"four transatlantic voyages (1492–93, 1493–96, 1498–1500, and 1502–04) opened the way for European exploration, exploitation, and colonization of the Americas. "
+			}
+		]
+	},
+	{
+		"intent": "first_voyage",
+		"reply": [
+			{
+				"content_type": "text",
+				"direction": "left",
+				"text":
+					"The Asian islands near China and India were fabled for their spices and gold, making them an attractive destination for Europeans. Since Muslim domination of the trade routes through the Middle East made travel eastward difficult, Columbus devised a route to sail west across the Atlantic to reach Asia, believing it would be quicker and safer. He estimated the earth to be a sphere and the distance between the Canary Islands and Japan to be about 2,300 miles."
 			}
 		]
 	}

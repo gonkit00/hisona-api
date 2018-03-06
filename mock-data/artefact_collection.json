@@ -18,7 +18,7 @@
 			{
 				"type": "text",
 				"direction": "left",
-				"text": "Hello this is the Hisona welcome message"
+				"text": "There are many Hisonified artefacts around you..."
 			}
 		]
 	},
@@ -41,7 +41,7 @@
 			{
 				"type": "text",
 				"direction": "left",
-				"text": "Hello this is the Christopher Columbus welcome message"
+				"text": "Hello there, Hisona has told me you would like to know about my great voyages. What might you like to know?"
 			}
 		],
 		"onboarding_read": false
@@ -65,7 +65,7 @@
 			{
 				"type": "text",
 				"direction": "left",
-				"text": "Hello this is the Roman Berenguer welcome message"
+				"text": "You there, Hisona has told me you wish to speak with me. What do you wish to know?"
 			}
 		],
 		"onboarding_read": false
@@ -90,7 +90,7 @@
 			{
 				"type": "text",
 				"direction": "left",
-				"text": "Hello this is the King Nectanebo II welcome message"
+				"text": "I am King Nectanebo II, the last ancient Egyptian native King to rule. What do you ask of me?"
 			}
 		],
 		"onboarding_read": false

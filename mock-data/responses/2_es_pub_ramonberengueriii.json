@@ -5,7 +5,7 @@
 			{
 				"content_type": "text",
 				"direction": "left",
-				"text": "Hello there! What would you like to know?"
+				"text": "Hola, what do you want to know of me?"
 			}
 		]
 	},
@@ -15,7 +15,14 @@
 			{
 				"content_type": "text",
 				"direction": "left",
-				"text": "Ramon Berenguer III about bio reply body message"
+				"text":
+					"I was born in Rodez (France) in 1082. I inherited the title of Count of Barcelona from my farther when I was just 14 years old."
+			},
+			{
+				"content_type": "text",
+				"direction": "left",
+				"text":
+					"When I was a young count I initially co-ruled with my uncle Berenguer Ramon I who unfortunately, died fighting in the First Crusade."
 			}
 		]
 	},
@@ -25,7 +32,8 @@
 			{
 				"content_type": "text",
 				"direction": "left",
-				"text": "Ramon Berenguer III education intent reply body message"
+				"text":
+					"I studied at the Knights Templar and was buried dressed in the white robes of the order in the Monastery of Santa María de Ripoll."
 			}
 		]
 	}

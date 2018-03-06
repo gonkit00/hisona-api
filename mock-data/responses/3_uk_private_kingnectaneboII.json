@@ -5,7 +5,7 @@
 			{
 				"content_type": "text",
 				"direction": "left",
-				"text": "Hello there! What would you like to know?"
+				"text": "I am King Nectanebo, what do you want?"
 			}
 		]
 	},
@@ -15,7 +15,8 @@
 			{
 				"content_type": "text",
 				"direction": "left",
-				"text": "King Nectanebo about bio reply body message"
+				"text":
+					"I ruled the Egyptian throne in 360 AD. My birth name was Nakhthorheb and epithet, mery-hathor, which means strong is His Lord, Beloved of Hatho."
 			}
 		]
 	},
@@ -25,7 +26,7 @@
 			{
 				"content_type": "text",
 				"direction": "left",
-				"text": "King Nectanebo education intent reply body message"
+				"text": "My school was that of a king, I learnt the many ways of ruling an advanced civilisation"
 			}
 		]
 	}
