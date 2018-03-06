@@ -3,7 +3,7 @@
 require('dotenv').config();
 
 const Koa = require('koa');
-
+const helmet = require('koa-helmet');
 const cors = require('koa-cors');
 const logger = require('koa-logger');
 const serve = require('koa-static');
@@ -15,6 +15,8 @@ const config = require('../config');
 const router = require('./routes');
 
 app
+	.use(logger())
+	.use(helmet())
 	.use(cors())
 	.use(async (ctx, next) => {
 		try {
@@ -39,7 +41,6 @@ app
 			urlencoded: true
 		})
 	)
-	.use(logger())
 	.use(respond());
 
 app.use(router.routes());

@@ -29,14 +29,13 @@
     "koa": "^2.4.1",
     "koa-body": "^2.5.0",
     "koa-cors": "0.0.16",
+    "koa-helmet": "^3.3.0",
     "koa-logger": "^3.1.0",
     "koa-respond": "^1.0.1",
     "koa-router": "^7.4.0",
     "koa-static": "^4.0.2",
     "limdu": "^0.9.4",
-    "mongodb": "^3.0.2",
-    "monk": "^6.0.5",
-    "node-wit": "^4.3.0",
+    "mongodb": "^3.0.3",
     "underscore": "^1.8.3",
     "watson-developer-cloud": "^3.0.5"
   }
