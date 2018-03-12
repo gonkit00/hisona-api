@@ -4,6 +4,7 @@ const fs = require('fs');
 
 const artefactsStore = './mock-data/user/artefacts.json';
 const conversationsStore = './mock-data/user/conversations.json';
+const artefactCollection = './mock-data/artefact_collection.json';
 
 const fetchArtefacts = () => {
 	try {
@@ -12,6 +13,16 @@ const fetchArtefacts = () => {
 	} catch (err) {
 		return [];
 	}
+};
+
+const fetchArtefactCollection = () => {
+	//Using the async function "readFile" instead of the sync function "readFileSync"
+	return new Promise((resolve, reject) => {
+		fs.readFile(artefactCollection, (err, data) => {
+			if (err) reject(err);
+			else resolve(JSON.parse(data));
+		})
+	})
 };
 
 const fetchConversations = () => {
@@ -101,6 +112,11 @@ const getAllArtefacts = () => {
 	}
 };
 
+const getArtefactCollection = () => {
+	const artefacts = fetchArtefactCollection();
+	return artefacts;
+};
+
 const getAllConversations = () => {
 	const conversations = fetchConversations();
 
@@ -116,5 +132,6 @@ module.exports = {
 	addArtefact,
 	getAllArtefacts,
 	addConversation,
-	getAllConversations
+	getAllConversations,
+	getArtefactCollection
 };

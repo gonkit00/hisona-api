@@ -7,5 +7,6 @@
 	{ "input": "tell me more about you", "output": "about_bio" },
 	{ "input": "tell me about your education", "output": "education" },
 	{ "input": "what did school did you go to", "output": "education" },
+	{ "input": "who are your best friends", "output": "friends" },
 	{ "input": "I dont understand", "output": "default" }
 ]

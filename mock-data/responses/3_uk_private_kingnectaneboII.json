@@ -29,5 +29,15 @@
 				"text": "My school was that of a king, I learnt the many ways of ruling an advanced civilisation"
 			}
 		]
+	},
+	{
+		"intent": "friends",
+		"reply": [
+			{
+				"content_type": "text",
+				"direction": "left",
+				"text": "My best friends are for certain Niklas and Marco"
+			}
+		]
 	}
 ]

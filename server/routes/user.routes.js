@@ -9,10 +9,10 @@ const utils = require('../utils');
 /**
  * User Routes
  */
-router.get('/artefacts', userController.getArtefacts);
-router.get('/conversations', userController.getConversations);
-router.post('/push-token', userController.savePushNotificationToken);
-
-router.get('/reset', utils.resetToInit);
+router
+  .get('/artefacts', userController.getArtefacts)
+  .get('/conversations', userController.getConversations)
+  .post('/push-token', userController.savePushNotificationToken)
+  .get('/reset', utils.resetToInit);
 
 module.exports = router;
