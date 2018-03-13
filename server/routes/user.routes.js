@@ -15,6 +15,8 @@ router
   .get('/conversations', userController.getConversations)
   .post('/push-token', userController.savePushNotificationToken)
   .get('/reset', utils.resetToInit)
-  .get('/all-artefacts', userController.getArtefactCollection);
+
+  .get('/all-artefacts', userController.getArtefactCollection)
+  .get('/thread/:artefactId', userController.getThread);
 
 module.exports = router;

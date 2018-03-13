@@ -69,9 +69,30 @@ async function getArtefactCollection(ctx) {
 	}
 }
 
+async function getThread(ctx) {
+	try {
+    const artefactId = ctx.params.artefactId;
+		const artefactCollection = await db.getArtefactCollection();
+		const artefacts = artefactCollection.filter(artefact =>
+	    (artefact.artefact_id === artefactId)
+		)
+		const status = await db.addArtefact(artefacts[0]);
+    let conversations = await db.getAllConversations();
+		conversations = conversations.filter(conversation =>
+      (conversation.artefact_id === artefactId)
+		);
+		console.log('Conversations', conversations[0]);
+		ctx.ok(conversations[0].conversation_id);
+	} catch (e) {
+		console.log(e);
+		ctx.send(404, { error: e.message });
+	}
+}
+
 module.exports = {
 	getArtefacts,
 	getConversations,
 	savePushNotificationToken,
-	getArtefactCollection
+	getArtefactCollection,
+	getThread
 };
