@@ -13,7 +13,7 @@
 		"country": "",
 		"type": ["statue"],
 		"location": "Earth",
-		"coordinates": [41.395180, 2.198031],
+		"coordinates": {"latitude": 41.395180, "longitude": 2.198031},
 		"default_onboarding_message": [
 			{
 				"type": "text",
@@ -36,7 +36,7 @@
 		"country": "Spain",
 		"type": ["statue"],
 		"location": "Barcelona, Spain",
-		"coordinates": [41.376303, 2.177792],
+		"coordinates": {"latitude": 41.376303, "longitude": 2.177792},
 		"default_onboarding_message": [
 			{
 				"type": "text",
@@ -60,7 +60,7 @@
 		"country": "Spain",
 		"type": ["statue"],
 		"location": "Barcelona, Spain",
-		"coordinates": [41.384945, 2.177674],
+		"coordinates": {"latitude": 41.384945, "longitude": 2.177674},
 		"default_onboarding_message": [
 			{
 				"type": "text",
@@ -85,7 +85,7 @@
 		"country": "London",
 		"type": ["museum artefact"],
 		"location": "Bristish Museum, London",
-		"coordinates": [41.383511, 2.166914],
+		"coordinates": {"latitude": 41.383511, "longitude": 2.166914},
 		"default_onboarding_message": [
 			{
 				"type": "text",
