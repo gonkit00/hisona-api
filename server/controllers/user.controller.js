@@ -59,8 +59,19 @@ async function savePushNotificationToken(ctx) {
 	}
 }
 
+async function getArtefactCollection(ctx) {
+	try {
+    const artefactCollection = await db.getArtefactCollection();
+    if (!Object.keys(artefactCollection).length) throw new Error('Empty collection');
+		ctx.ok(artefactCollection);
+	} catch (err) {
+		ctx.send(404, { error: err.message });
+	}
+}
+
 module.exports = {
 	getArtefacts,
 	getConversations,
-	savePushNotificationToken
+	savePushNotificationToken,
+	getArtefactCollection
 };
