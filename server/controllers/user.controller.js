@@ -81,7 +81,6 @@ async function getThread(ctx) {
 		conversations = conversations.filter(conversation =>
       (conversation.artefact_id === artefactId)
 		);
-		console.log('Conversations', conversations[0]);
 		ctx.ok(conversations[0].conversation_id);
 	} catch (e) {
 		console.log(e);

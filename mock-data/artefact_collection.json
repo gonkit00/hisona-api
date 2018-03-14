@@ -13,7 +13,7 @@
 		"country": "",
 		"type": ["statue"],
 		"location": "Earth",
-		"coordinates": {"latitude": 41.395180, "longitude": 2.198031},
+		"coordinates": {"latitude": 41.39499773551752, "longitude": 2.19784090533472},
 		"default_onboarding_message": [
 			{
 				"type": "text",
