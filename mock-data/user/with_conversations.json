@@ -1,0 +1,33 @@
+[
+	{
+		"conversation_id": "1",
+		"artefact_id": "1_es_pub_christophercolumbus",
+		"last_message_subtitle":
+			"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+		"last_message_date": "14:00",
+		"unread": true,
+		"thread": [
+			{
+				"content_type": "text",
+				"direction": "right",
+				"text":
+					"Hey Christopher Columbus, I've used Hisona to start talking to you."
+			},
+			{
+				"content_type": "typing_indicator",
+				"duration": 3000
+			},
+			{
+				"content_type": "text",
+				"direction": "left",
+				"text":
+					"Hello there! I'm Christopher Columbus and it is a pleasure to meet you."
+			},
+			{
+				"content_type": "text",
+				"direction": "left",
+				"text": "What would you like to know?"
+			}
+		]
+	}
+]
